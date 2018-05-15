@@ -4,7 +4,7 @@ import logging
 import os
 from argparse import ArgumentParser
 from itertools import zip_longest
-from os.path import realpath, isdir, isfile, join, islink, getsize
+from os.path import realpath, isdir, isfile, join, islink, getsize, exists
 
 logger = logging.getLogger('main')
 
@@ -45,7 +45,8 @@ def main():
 
 
 def resolve_dir(path):
-    assert isdir(path), '%s must be directory' % path
+    assert exists(path), '"%s" does not exists' % path
+    assert isdir(path), '"%s" must be directory' % path
     return realpath(path)
 
 
